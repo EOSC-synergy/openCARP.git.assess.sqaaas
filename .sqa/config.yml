@@ -1,0 +1,76 @@
+config:
+  credentials: []
+  project_repos:
+    git.opencarp.org/openCARP/openCARP:
+      branch: master
+      repo: https://git.opencarp.org/openCARP/openCARP.git
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.11
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      git.opencarp.org/openCARP/openCARP git:
+        commands:
+        - /usr/bin/env sh .sqa/script.gamy-malachite-dolphin.sh
+        container: qc.acc_shabby-buff-labradoodle
+  QC.Doc:
+    repos:
+      git.opencarp.org/openCARP/openCARP find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.crabby-violet-badger.sh
+        container: qc.doc_homey-xanthic-loon
+      git.opencarp.org/openCARP/openCARP git:
+        commands:
+        - /usr/bin/env sh .sqa/script.lousy-black-otter.sh
+        container: qc.doc_tasty-corn-malamute
+      git.opencarp.org/openCARP/openCARP markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.lanky-lilac-seal.sh
+        container: qc.doc_chummy-bistre-blue
+  QC.Lic:
+    repos:
+      git.opencarp.org/openCARP/openCARP licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.zippy-olive-iguana.sh
+        container: qc.lic_paltry-khaki-starfish
+  QC.Met:
+    repos:
+      git.opencarp.org/openCARP/openCARP cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-cyan-cuscus.sh
+        container: qc.met_stinky-sapphire-zorse
+      git.opencarp.org/openCARP/openCARP validate_codemeta:
+        commands:
+        - /usr/bin/env sh .sqa/script.cheeky-red-ocelot.sh
+        container: qc.met_boozy-orchid-wrasse
+  QC.Sec:
+    repos:
+      git.opencarp.org/openCARP/openCARP bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.woolly-ochre-snake.sh
+        container: qc.sec_skanky-pumpkin-spoonbill
+  QC.Sty:
+    repos:
+      git.opencarp.org/openCARP/openCARP flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.goopy-linen-pig.sh
+        container: qc.sty_frumpy-rust-zonkey
+      git.opencarp.org/openCARP/openCARP hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.crabby-lemon-baboon.sh
+        container: qc.sty_silly-magnolia-mole
+      git.opencarp.org/openCARP/openCARP jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.snippy-bronze-jellyfish.sh
+        container: qc.sty_sickly-persimmon-whale
+  QC.Ver:
+    repos:
+      git.opencarp.org/openCARP/openCARP get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.scummy-ecru-buzzard.sh
+        container: qc.ver_boozy-mauve-markhor
+timeout: 5400
